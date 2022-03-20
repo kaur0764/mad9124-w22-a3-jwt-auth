@@ -1,19 +1,32 @@
 {
-  "name": "mad9124-w21-a3-jwt-auth",
+  "name": "mad9124-w22-a3-jwt-auth",
   "version": "0.1.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=a2* nodemon server.js"
   },
   "keywords": [
     "MAD9124",
-    "W21"
+    "W22"
   ],
-  "author": "",
+  "author": "Jasreet Kaur <kaur0764@algonquinlive.com>",
   "contributors": [
     "Robert McKenney <mckennr@algonquincollege.com>"
   ],
   "license": "ISC",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "debug": "^4.3.3",
+    "express": "^4.17.3",
+    "express-mongo-sanitize": "^2.2.0",
+    "mongoose": "^6.2.4",
+    "morgan": "^1.10.0",
+    "xss": "^1.0.10"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
