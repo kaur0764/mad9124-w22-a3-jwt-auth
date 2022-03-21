@@ -18,6 +18,13 @@ schema.methods.generateAuthToken = function () {
   return jwt.sign(payload, jwtSecretKey);
 };
 
+schema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  delete obj.__v;
+  return obj;
+};
+
 schema.statics.authenticate = async function (email, password) {
   const user = await this.findOne({ email: email });
 

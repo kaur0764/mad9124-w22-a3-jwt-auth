@@ -1,3 +1,4 @@
+import authenticate from "../../middleware/auth.js";
 import sanitizeBody from "../../middleware/sanitizeBody.js";
 import User from "../../models/User.js";
 import createDebug from "debug";
@@ -62,6 +63,11 @@ router.post("/tokens", sanitizeBody, async (req, res) => {
     .json(
       formatResponseData({ accessToken: user.generateAuthToken() }, "tokens")
     );
+});
+
+router.get("/users/me", authenticate, async (req, res) => {
+  const user = await User.findById(req.user._id);
+  res.json(formatResponseData(user));
 });
 
 /**
