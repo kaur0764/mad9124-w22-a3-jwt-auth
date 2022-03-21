@@ -9,6 +9,23 @@ const router = express.Router();
 router.post("/users", sanitizeBody, async (req, res) => {
   try {
     let newUser = new User(req.sanitizedBody);
+
+    const itExists = Boolean(
+      await User.countDocuments({ email: newUser.email })
+    );
+    if (itExists) {
+      return res.status(400).json({
+        errors: [
+          {
+            status: "400",
+            title: "Validation Error",
+            detail: `Email address '${newUser.email}' is already registered.`,
+            source: { pointer: "/data/attributes/email" },
+          },
+        ],
+      });
+    }
+
     await newUser.save();
     res.status(201).json(formatResponseData(newUser));
   } catch (err) {
