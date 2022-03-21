@@ -1,18 +1,18 @@
-import mongoose from 'mongoose'
-import createDebug from 'debug'
-const debug = createDebug('a2:db')
+import mongoose from "mongoose";
+import createDebug from "debug";
+const debug = createDebug("a3:db");
 
 export default function () {
   mongoose
     .connect(`mongodb://localhost:27017/mongoCrud`, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     })
     .then(() => {
-      debug(`Connected to MongoDB ...`)
+      debug(`Connected to MongoDB ...`);
     })
-    .catch(err => {
-      debug(`Error connecting to MongoDB ...`, err.message)
-      process.exit(1)
-    })
+    .catch((err) => {
+      debug(`Error connecting to MongoDB ...`, err.message);
+      process.exit(1);
+    });
 }

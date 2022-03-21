@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "DEBUG=a2* nodemon server.js"
+    "start": "DEBUG=a3* nodemon server.js"
   },
   "keywords": [
     "MAD9124",
@@ -19,6 +19,7 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "debug": "^4.3.3",
     "express": "^4.17.3",
     "express-mongo-sanitize": "^2.2.0",

@@ -1,12 +1,12 @@
-import http from 'http'
-import app from './app.js'
-import createDebug from 'debug'
+import http from "http";
+import app from "./app.js";
+import createDebug from "debug";
 
-const debug = createDebug('a2:httpServer')
+const debug = createDebug("a3:httpServer");
 
-const httpServer = http.createServer(app)
+const httpServer = http.createServer(app);
 
-const port = process.env.PORT || 3030
+const port = process.env.PORT || 3030;
 httpServer.listen(port, () => {
-  debug(`HTTP server listening on port ${port}`)
-})
+  debug(`HTTP server listening on port ${port}`);
+});
