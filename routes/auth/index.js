@@ -42,6 +42,34 @@ router.post("/users", sanitizeBody, async (req, res) => {
   }
 });
 
+router.post("/tokens", sanitizeBody, async (req, res) => {
+  const { email, password } = req.sanitizedBody;
+  const user = await User.authenticate(email, password);
+
+  if (!user) {
+    return res.status(401).json({
+      errors: [
+        {
+          status: "401",
+          title: "Incorrect username or password.",
+        },
+      ],
+    });
+  }
+
+  res
+    .status(201)
+    .json(
+      formatResponseData({ accessToken: user.generateAuthToken() }, "tokens")
+    );
+});
+
+/**
+ * Format the response data object according to JSON:API v1.0
+ * @param {string} type The resource collection name, e.g. 'cars'
+ * @param {Object | Object[]} payload An array or instance object from that collection
+ * @returns
+ */
 function formatResponseData(payload, type = "users") {
   if (payload instanceof Array) {
     return { data: payload.map((resource) => format(resource)) };
