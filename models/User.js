@@ -8,7 +8,7 @@ const jwtSecretKey = "superSecretKey";
 const schema = new mongoose.Schema({
   firstName: { type: String, required: true, maxLength: 64 },
   lastName: { type: String, required: true, maxLength: 64 },
-  email: { type: String, required: true, maxLength: 512 },
+  email: { type: String, required: true, maxLength: 512, unique: true },
   password: { type: String, required: true, maxLength: 70 },
   isAdmin: { type: Boolean, required: true, default: false },
 });
@@ -27,7 +27,6 @@ schema.methods.toJSON = function () {
 
 schema.statics.authenticate = async function (email, password) {
   const user = await this.findOne({ email: email });
-
   const badHash = `$2b$${saltRounds}$invalidusernameaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`;
   const hashedPassword = user ? user.password : badHash;
   const passwordDidMatch = await bcrypt.compare(password, hashedPassword);
