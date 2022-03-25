@@ -1,11 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  firstName: { type: String, required: true, maxLength: 64 },
-  lastName: { type: String, required: true, maxLength: 64 },
-  nickName: { type: String, required: false, maxLength: 64 },
-  email: { type: String, required: true, maxLength: 512 },
+  firstName: { type: String, required: true, maxlength: 64 },
+  lastName: { type: String, required: true, maxlength: 64 },
+  nickName: { type: String, required: false, maxlength: 64 },
+  email: { type: String, required: true, maxlength: 512 },
 });
-const Model = mongoose.model("Student", schema)
+const Model = mongoose.model("Student", schema);
 
-export default Model
+export default Model;

@@ -1,12 +1,14 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
-  code: { type: String, required: true, maxLength: 16 },
-  title: { type: String, required: true, maxLength: 255 },
-  description: { type: String, required: false, maxLength: 2048 },
-  url: { type: String, required: false, maxLength: 512 },
-  students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student", required: false}]
+  code: { type: String, required: true, maxlength: 16 },
+  title: { type: String, required: true, maxlength: 255 },
+  description: { type: String, required: false, maxlength: 2048 },
+  url: { type: String, required: false, maxlength: 512 },
+  students: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Student", required: false },
+  ],
 });
-const Model = mongoose.model("Course", schema)
+const Model = mongoose.model("Course", schema);
 
-export default Model
+export default Model;

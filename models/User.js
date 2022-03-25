@@ -6,10 +6,10 @@ const saltRounds = 14;
 const jwtSecretKey = "superSecretKey";
 
 const schema = new mongoose.Schema({
-  firstName: { type: String, required: true, maxLength: 64 },
-  lastName: { type: String, required: true, maxLength: 64 },
-  email: { type: String, required: true, maxLength: 512, unique: true },
-  password: { type: String, required: true, maxLength: 70 },
+  firstName: { type: String, required: true, maxlength: 64 },
+  lastName: { type: String, required: true, maxlength: 64 },
+  email: { type: String, required: true, maxlength: 512, unique: true },
+  password: { type: String, required: true, maxlength: 70 },
   isAdmin: { type: Boolean, required: true, default: false },
 });
 
