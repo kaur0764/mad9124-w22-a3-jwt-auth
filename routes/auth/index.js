@@ -55,7 +55,7 @@ router.post("/tokens", sanitizeBody, async (req, res) => {
       username: email,
       ipAddress: address.ip(),
       didSucceed: false,
-      createdAt: Math.floor(Date.now()),
+      createdAt: Date.now(),
     });
     await newAuthenticationAttempts.save();
 
@@ -73,7 +73,7 @@ router.post("/tokens", sanitizeBody, async (req, res) => {
     username: email,
     ipAddress: address.ip(),
     didSucceed: true,
-    createdAt: Math.floor(Date.now()),
+    createdAt: Date.now(),
   });
   await newAuthenticationAttempts.save();
 
