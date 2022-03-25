@@ -6,14 +6,7 @@ const router = express.Router();
 
 router.get("/", authenticate, async (req, res) => {
   const authentication_attempts = await Authentication_attempts.find();
-  res.json({
-    data: authentication_attempts.map((course) =>
-      formatResponseData(
-        "authentication_attempts",
-        authentication_attempts.toObject()
-      )
-    ),
-  });
+  res.json({ data: authentication_attempts });
 });
 
 export default router;

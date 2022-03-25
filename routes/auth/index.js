@@ -1,8 +1,10 @@
+import Authentication_attempts from "../../models/Authentication_attempts.js";
 import authenticate from "../../middleware/auth.js";
 import sanitizeBody from "../../middleware/sanitizeBody.js";
 import User from "../../models/User.js";
 import createDebug from "debug";
 import express from "express";
+import address from "address";
 
 const debug = createDebug("a3:routes:auth");
 const router = express.Router();
@@ -46,8 +48,17 @@ router.post("/users", sanitizeBody, async (req, res) => {
 router.post("/tokens", sanitizeBody, async (req, res) => {
   const { email, password } = req.sanitizedBody;
   const user = await User.authenticate(email, password);
+  let newAuthenticationAttempts;
 
   if (!user) {
+    newAuthenticationAttempts = new Authentication_attempts({
+      username: email,
+      ipAddress: address.ip(),
+      didSucceed: false,
+      createdAt: Math.floor(Date.now()),
+    });
+    await newAuthenticationAttempts.save();
+
     return res.status(401).json({
       errors: [
         {
@@ -57,6 +68,14 @@ router.post("/tokens", sanitizeBody, async (req, res) => {
       ],
     });
   }
+
+  newAuthenticationAttempts = new Authentication_attempts({
+    username: email,
+    ipAddress: address.ip(),
+    didSucceed: true,
+    createdAt: Math.floor(Date.now()),
+  });
+  await newAuthenticationAttempts.save();
 
   res
     .status(201)

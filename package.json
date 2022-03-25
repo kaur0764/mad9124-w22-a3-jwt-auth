@@ -19,6 +19,7 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
+    "address": "^1.1.2",
     "bcrypt": "^5.0.1",
     "debug": "^4.3.3",
     "express": "^4.17.3",
