@@ -6,8 +6,8 @@ export default async function (req, res, next) {
     return res.status(401).json({
       errors: [
         {
-          status: "401",
-          title: "Authentication failed",
+          status: "403",
+          title: "Forbidden",
           description: "You are not authorized to perform this operation!",
         },
       ],
