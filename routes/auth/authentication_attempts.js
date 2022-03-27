@@ -10,7 +10,7 @@ router.get("/", authenticate, async (req, res) => {
     data: authentication_attempts.map((authentication_attempt) =>
       formatResponseData(
         "authentication_attempts",
-        authentication_attempt.toObject()
+        authentication_attempt.toJSON()
       )
     ),
   });

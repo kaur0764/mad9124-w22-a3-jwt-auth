@@ -6,6 +6,13 @@ const schema = new mongoose.Schema({
   didSucceed: { type: Boolean, required: true },
   createdAt: { type: Date, required: true },
 });
+
+schema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.__v;
+  return obj;
+};
+
 const Model = mongoose.model("Authentication_attempts", schema);
 
 export default Model;
